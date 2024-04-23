@@ -1,15 +1,18 @@
 class Solution {
     public int solution(int n, int m, int[] section) {
-        int answer = 0;                
-        int start = section[0];        
-        answer++;                
-        for (int item : section) {            
-            if (start + m > item) {                
-                continue;            
-            }                        
-            start = item;            
-            answer++;        
-        }                
-        return answer;
+        return func(n,m,section);
+    }
+    private static int func(int n, int m, int[] section) {
+        int result = 1, count =0;
+        if(m == 1) return section.length;
+        for(int i=1;i<section.length;i++) {
+            count = section[i]-section[i-1]+1;
+            if(count >= m) {
+                result++;
+                count=0;   
+            }
+        }
+            
+        return result;
     }
 }
